@@ -1,0 +1,2 @@
+1) register route comment kora
+2) (admin logout) controller er maddhome form submit kore logout kora jay nah
