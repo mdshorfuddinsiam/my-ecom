@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,14 +48,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 // ---------------------------------------------
 
-// Admin Profile
-Route::prefix('admin')->name('admin.')->group(function () {
-	Route::resource('profiles', AdminProfileController::class);
-	Route::post('password/update/{id}',[AdminProfileController::class,'adminPasswordUpdate'])->name('password.update');
-	Route::post('email/update/{id}',[AdminProfileController::class,'adminEmailUpdate'])->name('email.update');
-})->middleware('auth:admin');
-
-
 // User Dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -79,3 +72,16 @@ Route::prefix('user')->name('user.')->group(function () {
 	Route::post('/profile/update', [App\Http\Controllers\HomeController::class, 'userProfileUpdate'])->name('profile.update');
 	Route::post('/password/update', [App\Http\Controllers\HomeController::class, 'userPasswordUpdate'])->name('password.update');
 });
+
+Route::prefix('admin')->name('admin.')->group(function () {
+	// Admin Profile
+	Route::resource('profiles', AdminProfileController::class);
+	Route::post('password/update/{id}',[AdminProfileController::class,'adminPasswordUpdate'])->name('password.update');
+	Route::post('email/update/{id}',[AdminProfileController::class,'adminEmailUpdate'])->name('email.update');
+
+	// Admin Brand
+	Route::resource('brands', BrandController::class);	
+	Route::get('brand/delete/{brand}',[BrandController::class,'destroy'])->name('brand.delete');
+	Route::get('brand/active/{brand}',[BrandController::class,'active'])->name('brand.active');
+	Route::get('brand/inactive/{brand}',[BrandController::class,'inactive'])->name('brand.inactive');
+})->middleware('auth:admin');
