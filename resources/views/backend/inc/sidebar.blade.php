@@ -124,7 +124,7 @@
             <!--begin:Menu item-->
             <div class="menu-item">
               <!--begin:Menu link-->
-              <a class="menu-link {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
+              <a class="menu-link {{ Request::routeIs('admin.brands.*') ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>
@@ -178,7 +178,7 @@
             <!--begin:Menu item-->
             <div class="menu-item">
               <!--begin:Menu link-->
-              <a class="menu-link {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
+              <a class="menu-link {{ Request::routeIs('admin.categories.*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>
@@ -191,7 +191,7 @@
             <!--begin:Menu item-->
             <div class="menu-item">
               <!--begin:Menu link-->
-              <a class="menu-link {{ Route::currentRouteName() == 'admin.subcategories.index' ? 'active' : '' }}" href="{{ route('admin.subcategories.index') }}">
+              <a class="menu-link {{ Request::routeIs('admin.subcategories.*') ? 'active' : '' }}" href="{{ route('admin.subcategories.index') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>
@@ -204,7 +204,7 @@
             <!--begin:Menu item-->
             <div class="menu-item">
               <!--begin:Menu link-->
-              <a class="menu-link {{ Route::currentRouteName() == 'admin.subsubcategories.index' ? 'active' : '' }}" href="{{ route('admin.subsubcategories.index') }}">
+              <a class="menu-link {{ Request::routeIs('admin.subsubcategories.*') ? 'active' : '' }}" href="{{ route('admin.subsubcategories.index') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>
