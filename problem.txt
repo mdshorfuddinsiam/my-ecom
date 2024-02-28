@@ -1,2 +1,5 @@
 1) register route comment kora
 2) (admin logout) controller er maddhome form submit kore logout kora jay nah
+3) (bootstrap-icon-picker) package ta use krte partasi nah
+$) (breadcumb) dynamic kora lagbe*
+5) menu class (active) kora lagbe*

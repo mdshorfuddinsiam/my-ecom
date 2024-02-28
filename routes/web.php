@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\SubsubcategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,4 +87,25 @@ Route::prefix('admin')->name('admin.')->group(function () {
 	Route::get('brand/delete/{brand}',[BrandController::class,'destroy'])->name('brand.delete');
 	Route::get('brand/active/{brand}',[BrandController::class,'active'])->name('brand.active');
 	Route::get('brand/inactive/{brand}',[BrandController::class,'inactive'])->name('brand.inactive');
+
+	// Admin Category
+	Route::resource('categories', CategoryController::class);
+	Route::get('category/delete/{category}',[CategoryController::class,'destroy'])->name('category.delete');
+	Route::get('category/active/{category}',[CategoryController::class,'active'])->name('category.active');
+	Route::get('category/inactive/{category}',[CategoryController::class,'inactive'])->name('category.inactive');
+
+	// Admin Subcategory
+	Route::resource('subcategories', SubcategoryController::class);
+	Route::get('subcategory/delete/{subcategory}',[SubcategoryController::class,'destroy'])->name('subcategory.delete');
+	Route::get('subcategory/active/{subcategory}',[SubcategoryController::class,'active'])->name('subcategory.active');
+	Route::get('subcategory/inactive/{subcategory}',[SubcategoryController::class,'inactive'])->name('subcategory.inactive');
+
+	// Admin Subsubcategory
+	Route::resource('subsubcategories', SubsubcategoryController::class);
+	Route::get('subsubcategory/delete/{subsubcategory}',[SubsubcategoryController::class,'destroy'])->name('subsubcategory.delete');
+	Route::get('subsubcategory/active/{subsubcategory}',[SubsubcategoryController::class,'active'])->name('subsubcategory.active');
+	Route::get('subsubcategory/inactive/{subsubcategory}',[SubsubcategoryController::class,'inactive'])->name('subsubcategory.inactive');
+		// Ajax Get SubCategory
+		Route::post('get/subcat',[SubsubcategoryController::class,'getSubCat'])->name('getsubcat');
+
 })->middleware('auth:admin');

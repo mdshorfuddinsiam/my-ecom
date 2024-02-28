@@ -107,11 +107,16 @@
 	    		  <!--begin::Label-->
 	    		  <label class="fw-semibold fs-6 mb-2">Status</label>
 	    		  <!--end::Label-->	
-	    		  <select name="status" class="form-select form-select-solid" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+	    		  <select name="status" class="form-select form-select-solid @error('status') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
 	    		      <option></option>
 	    		      <option {{ old('status') == "1" ? 'selected' : '' }} value="1">Active</option>
 	    		      <option {{ old('status') == "0" ? 'selected' : '' }} value="0">Inactive</option>
 	    		  </select>
+	    		  @error('status')
+	    		      <span class="invalid-feedback" role="alert">
+	    		          <strong>{{ $message }}</strong>
+	    		      </span>
+	    		  @enderror
 	    		</div>
 	    		<!--end::Input group-->
 	    		<div class="fv-row mb-7">

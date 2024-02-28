@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin_master')
 @section('title')
-	Brand List
+	Sub-SubCategory List
 @endsection
 
 @section('content')
@@ -11,12 +11,12 @@
 	  <div class="card-header border-0 pt-6">
 	    <!--begin::Card title-->
 	    <div class="card-title">
-	    	<h4>Brand Lists</h4>
+	    	<h4>Sub-SubCategory Lists</h4>
 	    </div>
 	    <!--begin::Card title-->
 	    <!--begin::Card toolbar-->
 	    <div class="card-toolbar">
-	    	<a href="{{ route('admin.brands.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Brand Create</a>
+	    	<a href="{{ route('admin.subsubcategories.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Sub-SubCategory Create</a>
 	    </div>
 	    <!--end::Card toolbar-->
 	  </div>
@@ -28,26 +28,21 @@
 	  	<table id="kt_datatable_dom_positioning" class="table table-striped table-row-bordered gy-5 gs-7 border rounded">
 	  	    <thead>
 	  	        <tr class="fw-bold fs-6 text-gray-800 px-7">
-	  	            <th>SL NO.</th>
-	  	            <th>Logo</th>
+	  	            <th>Sl No.</th>
+	  	            <th>Category Name</th>
+	  	            <th>SubCategory Name</th>
 	  	            <th>Name</th>
-	  	            <th>Updated At</th>
 	  	            <th>Status</th>
 	  	            <th width="20%">Action</th>
 	  	        </tr>
 	  	    </thead>
 	  	    <tbody>
-	  	    	@foreach($brands as $row)
+	  	    	@foreach($subsubcategories as $row)
 	  	        <tr>
 	  	        	<td>{{ $loop->iteration }}</td>
-	  	            <td>
-	  	            	<img src="{{ asset($row->image) }}" width="80" alt="">
-	  	            </td>
+	  	            <td> {{ $row->category->name }} </td>
+	  	            <td> {{ $row->subcategory->name }} </td>
 	  	            <td>{{ $row->name }}</td>
-	  	            <td>
-	  	            	{{-- {{ Carbon\Carbon::parse($row->created_at)->format('d/m/Y') }} --}}
-	  	            	{{ \Carbon\Carbon::parse($row->updated_at)->diffForHumans() }}
-	  	            </td>
 	  	            <td>
 	  	            	@if($row->status == 1)
 	  	            		<span class="badge badge-success">active</span>
@@ -57,12 +52,12 @@
 	  	            </td>
 	  	            <td>
 	  	            	@if($row->status == 1)
-	  	            		<a href="{{ route('admin.brand.inactive', ['brand' => $row->id]) }}" class="btn btn-sm btn-warning" title="Inactive Now"><i class="fas fa-toggle-off"></i></a>
+	  	            		<a href="{{ route('admin.subsubcategory.inactive', ['subsubcategory' => $row->id]) }}" class="btn btn-sm btn-warning" title="Inactive Now"><i class="fas fa-toggle-off"></i></a>
 	  	            	@else
-	  	            		<a href="{{ route('admin.brand.active', ['brand' => $row->id]) }}" class="btn btn-sm btn-success" title="Active Now"><i class="fas fa-toggle-on"></i></a>
+	  	            		<a href="{{ route('admin.subsubcategory.active', ['subsubcategory' => $row->id]) }}" class="btn btn-sm btn-success" title="Active Now"><i class="fas fa-toggle-on"></i></a>
 	  	            	@endif
-	  	            	<a href="{{ route('admin.brands.edit', ['brand' => $row->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit	"></i></a>
-	  	            	<a href="{{ route('admin.brand.delete', ['brand' => $row->id]) }}" class="btn btn-sm btn-danger delete"><i class="fas fa-trash"></i></a>
+	  	            	<a href="{{ route('admin.subsubcategories.edit', ['subsubcategory' => $row->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-edit	"></i></a>
+	  	            	<a href="{{ route('admin.subsubcategory.delete', ['subsubcategory' => $row->id]) }}" class="btn btn-sm btn-danger delete"><i class="fas fa-trash"></i></a>
 	  	            </td>
 	  	        </tr>
 	  	        @endforeach
@@ -74,7 +69,6 @@
 	</div>
 	<!--end::Card-->
 
-	
 @endsection
 
 @section('admin_js')
