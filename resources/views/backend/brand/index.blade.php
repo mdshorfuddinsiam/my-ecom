@@ -32,6 +32,7 @@
 	  	            <th>Logo</th>
 	  	            <th>Name</th>
 	  	            <th>Updated At</th>
+	  	            <th>Featured</th>
 	  	            <th>Status</th>
 	  	            <th width="20%">Action</th>
 	  	        </tr>
@@ -49,6 +50,12 @@
 	  	            	{{ \Carbon\Carbon::parse($row->updated_at)->diffForHumans() }}
 	  	            </td>
 	  	            <td>
+	  	            	@if($row->is_featured == 1)
+	  	            		<span class="badge badge-success">Yes</span>
+	  	            	@else
+	  	            		<span class="badge badge-warning">No</span>
+	  	            	@endif
+	  	            </td><td>
 	  	            	@if($row->status == 1)
 	  	            		<span class="badge badge-success">active</span>
 	  	            	@else

@@ -119,6 +119,25 @@
 	    		  @enderror
 	    		</div>
 	    		<!--end::Input group-->
+
+	    		<!--begin::Input group-->
+	    		<div class="fv-row mb-7">
+	    		  <!--begin::Label-->
+	    		  <label class="fw-semibold fs-6 mb-2">Is Featured</label>
+	    		  <!--end::Label-->	
+	    		  <select name="is_featured" class="form-select form-select-solid @error('is_featured') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+	    		      <option></option>
+	    		      <option {{ old('is_featured') == "1" ? 'selected' : '' }} value="1">Yes</option>
+	    		      <option {{ old('is_featured') == "0" ? 'selected' : '' }} value="0">No</option>
+	    		  </select>
+	    		  @error('is_featured')
+	    		      <span class="invalid-feedback" role="alert">
+	    		          <strong>{{ $message }}</strong>
+	    		      </span>
+	    		  @enderror
+	    		</div>
+	    		<!--end::Input group-->
+	    		
 	    		<div class="fv-row mb-7">
 	    			<input type="submit" class="btn btn-light-primary mt-5" value="Save">
 	    		</div>

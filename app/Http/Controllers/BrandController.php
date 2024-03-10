@@ -33,6 +33,7 @@ class BrandController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:brands',
             'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'is_featured'  => 'required|boolean',
             'status'  => 'required|boolean',
         ]);
  
@@ -46,6 +47,7 @@ class BrandController extends Controller
 
         $data = [];
         $data = $request->all();
+        $data['slug'] = \Str::slug($request->name);
 
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -89,6 +91,7 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:brands,name,'. $brand->id,
             'image'      => 'required_if:type,file|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'is_featured'  => 'required|boolean',
             'status'  => 'required|boolean',
         ]);
 
@@ -96,6 +99,7 @@ class BrandController extends Controller
 
         $data = [];
         $data = $request->all();
+        $data['slug'] = \Str::slug($request->name);
 
         if($request->hasFile('image')){
             if(file_exists($brand->image)){
