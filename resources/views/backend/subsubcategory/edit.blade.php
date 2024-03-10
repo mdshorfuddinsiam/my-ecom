@@ -58,7 +58,7 @@
 	    		  <!--begin::Label-->
 	    		  <label class="required fw-semibold fs-6 mb-2">Sub-Category Name</label>
 	    		  <!--end::Label-->	
-	    		  <select name="subcategory_id" class="form-select form-select-solid @error('subcategory_id') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+	    		  <select name="subcategory_id" id="subcategory_id"  class="form-select form-select-solid @error('subcategory_id') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
 	    		      <option></option>
 	    		      {{-- @foreach($subcategories as $row) --}}
 	    		      @foreach($subsubcategory->category->subcategories as $row)

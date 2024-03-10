@@ -9,6 +9,12 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SubsubcategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SizeController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\GalleryimageController;
+use App\Http\Controllers\VariantController;
+use App\Http\Controllers\VariantitemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,7 +66,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
 	    return view('backend.index');
 	    // return view('backend.layouts.admin_master');
 	    // return view('admin');
-	})->middleware('auth:admin');
+	});
 
 	Route::get('/logout', function () {
 	    auth()->guard('admin')->logout();
@@ -76,7 +82,7 @@ Route::prefix('user')->name('user.')->group(function () {
 	Route::post('/password/update', [App\Http\Controllers\HomeController::class, 'userPasswordUpdate'])->name('password.update');
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
 	// Admin Profile
 	Route::resource('profiles', AdminProfileController::class);
 	Route::post('password/update/{id}',[AdminProfileController::class,'adminPasswordUpdate'])->name('password.update');
@@ -108,4 +114,58 @@ Route::prefix('admin')->name('admin.')->group(function () {
 		// Ajax Get SubCategory
 		Route::post('get/subcat',[SubsubcategoryController::class,'getSubCat'])->name('getsubcat');
 
-})->middleware('auth:admin');
+	// Admin Product
+	Route::resource('products', ProductController::class);
+	Route::get('product/delete/{product}',[ProductController::class,'destroy'])->name('product.delete');
+	Route::get('product/active/{product}',[ProductController::class,'active'])->name('product.active');
+	Route::get('product/inactive/{product}',[ProductController::class,'inactive'])->name('product.inactive');
+		// Ajax Get Sub-SubCategory
+		Route::post('get/subsubcat',[ProductController::class,'getSubSubCat'])->name('getsubsubcat');
+		// Status Update
+		Route::post('product/update/status',[ProductController::class,'updateStatus'])->name('product.update-status');
+
+	// Admin Size
+	Route::resource('sizes', SizeController::class);
+	Route::get('size/delete/{size}',[SizeController::class,'destroy'])->name('size.delete');
+		// Status Update
+		Route::post('size/update/status',[SizeController::class,'updateStatus'])->name('size.update-status');
+
+	// Admin Color
+	Route::resource('colors', ColorController::class);
+	Route::get('color/delete/{color}',[ColorController::class,'destroy'])->name('color.delete');
+		// Status Update
+		Route::post('color/update/status',[ColorController::class,'updateStatus'])->name('color.update-status');
+
+	// Admin Galllery Image
+	Route::get('galleryimages/{product}',[GalleryimageController::class,'index'])->name('galleryimages.index');
+	Route::get('galleryimages/create/{product}',[GalleryimageController::class,'create'])->name('galleryimages.create');
+	Route::post('galleryimages/{product}',[GalleryimageController::class,'store'])->name('galleryimages.store');
+	Route::get('galleryimages/edit/{product}/{galleryimage}',[GalleryimageController::class,'edit'])->name('galleryimages.edit');
+	Route::put('galleryimages/update/{product}/{galleryimage}',[GalleryimageController::class,'update'])->name('galleryimages.update');
+	Route::get('galleryimage/delete/{product}/{galleryimage}',[GalleryimageController::class,'destroy'])->name('galleryimages.delete');
+		// Status Update
+		// Route::post('galleryimage/update/status',[GalleryimageController::class,'updateStatus'])->name('galleryimage.update-status');
+
+	// Admin Variant
+	Route::get('variants/{product}',[VariantController::class,'index'])->name('variants.index');
+	Route::get('variants/create/{product}',[VariantController::class,'create'])->name('variants.create');
+	Route::post('variants/{product}',[VariantController::class,'store'])->name('variants.store');
+	Route::get('variants/edit/{product}/{variant}',[VariantController::class,'edit'])->name('variants.edit');
+	Route::put('variants/update/{product}/{variant}',[VariantController::class,'update'])->name('variants.update');
+	Route::get('variants/delete/{product}/{variant}',[VariantController::class,'destroy'])->name('variants.delete');
+		// Status Update
+		Route::post('variants/update/status',[VariantController::class,'updateStatus'])->name('variants.update-status');
+
+	// Admin Variant Item
+	Route::get('variantitems/{product}/{variant}',[VariantitemController::class,'index'])->name('variantitems.index');
+	Route::get('variantitems/create/{product}/{variant}',[VariantitemController::class,'create'])->name('variantitems.create');
+	Route::post('variantitems/{product}/{variant}',[VariantitemController::class,'store'])->name('variantitems.store');
+	Route::get('variantitems/edit/{product}/{variant}/{variantitem}',[VariantitemController::class,'edit'])->name('variantitems.edit');
+	Route::put('variantitems/update/{product}/{variant}/{variantitem}',[VariantitemController::class,'update'])->name('variantitems.update');
+	Route::get('variantitems/delete/{product}/{variant}/{variantitem}',[VariantitemController::class,'destroy'])->name('variantitems.delete');
+		// Status Update
+		// Route::post('variantitems/update/status',[VariantitemController::class,'updateStatus'])->name('variantitems.update-status');
+
+		
+
+});
