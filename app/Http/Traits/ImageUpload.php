@@ -7,7 +7,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 trait ImageUpload{
 
 	// Save 
-	public function uploadImage($request, $filename, $name, $folder, $width=380, $height=317){
+	public function uploadImage($request, $filename='image', $name, $folder, $width=380, $height=317){
 		if($request->hasFile($filename)){
 			$manager = new ImageManager(new Driver());
 		    $image = $request->file($filename);
@@ -18,7 +18,7 @@ trait ImageUpload{
 	}
 
 	// Update
-	public function updateImage($request, $old_image=null, $filename, $name, $folder, $width=380, $height=317){
+	public function updateImage($request, $old_image=null, $filename='image', $name, $folder, $width=380, $height=317){
 		if($request->hasFile($filename)){
 		    if(file_exists($old_image)){
 		        unlink($old_image);
@@ -42,7 +42,7 @@ trait ImageUpload{
 
 
 	// Save 
-	public function multiImageUpload($request, $filename, $name, $folder, $width=380, $height=317){
+	public function multiImageUpload($request, $filename='image', $name, $folder, $width=380, $height=317){
 		if($request->hasFile($filename)){
 			// dd($request->multi_image);
 			$manager = new ImageManager(new Driver());

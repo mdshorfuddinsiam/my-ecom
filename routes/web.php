@@ -7,12 +7,13 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SubcategoryController;
-use App\Http\Controllers\SubsubcategoryController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\GalleryimageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SizeController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\SubsubcategoryController;
 use App\Http\Controllers\VariantController;
 use App\Http\Controllers\VariantitemController;
 use Illuminate\Support\Facades\Route;
@@ -166,6 +167,10 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 		// Status Update
 		// Route::post('variantitems/update/status',[VariantitemController::class,'updateStatus'])->name('variantitems.update-status');
 
-		
+	// Admin Slider
+	Route::resource('sliders', SliderController::class);
+	Route::get('slider/delete/{slider}',[SliderController::class,'destroy'])->name('slider.delete');
+		// Status Update
+		Route::post('slider/update/status',[SliderController::class,'updateStatus'])->name('slider.update-status');	
 
 });

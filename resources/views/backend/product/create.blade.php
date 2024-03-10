@@ -200,7 +200,7 @@
 	    				  <label class="required fw-semibold fs-6 mb-2">Selling Price</label>
 	    				  <!--end::Label-->
 	    				  <!--begin::Input-->
-	    				  <input type="number" name="selling_price" class="form-control form-control-solid mb-3 mb-lg-0 @error('selling_price') is-invalid @enderror" placeholder="0.00" value="{{ old('selling_price') }}" min="0.00" />
+	    				  <input type="text" name="selling_price" class="form-control form-control-solid mb-3 mb-lg-0 @error('selling_price') is-invalid @enderror" placeholder="0.00" value="{{ old('selling_price') }}" min="0.00" />
 	    				  <!--end::Input-->
 	    				  @error('selling_price')
 	    				      <span class="invalid-feedback" role="alert">

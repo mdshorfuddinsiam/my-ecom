@@ -47,8 +47,10 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'subcategory_id' => 'nullable|exists:subcategories,id',
             'subsubcategory_id' => 'nullable|exists:subsubcategories,id',
-            'selling_price' => 'required|integer|min:1|digits_between:1,6',
-            'discount_price' => 'nullable|integer|min:1|lt:selling_price|digits_between:1,6',
+            // 'selling_price' => 'required|integer|min:1|digits_between:1,6',
+            'selling_price' => 'required|numeric|min:1|between:1,9999999.99',
+            // 'discount_price' => 'nullable|integer|min:1|lt:selling_price|digits_between:1,6',
+            'discount_price' => 'nullable|integer|min:1|lt:selling_price|between:1,9999999.99',
             'start_discount_date' => 'nullable|before:end_discount_date',
             'end_discount_date' => 'nullable|after:start_discount_date',
             'unit'  => 'required|string',
@@ -73,7 +75,7 @@ class ProductController extends Controller
         $data['admin_id'] = auth()->guard('admin')->id(); 
         $data['slug'] = \Str::slug($request->name);
 
-        $data['thumbnail_image'] = $this->uploadImage($request, 'thumbnail_image', 'product_images-', 'product_images');
+        $data['thumbnail_image'] = $this->uploadImage($request, 'thumbnail_image', 'product/thumbnail_images-', 'product_images');
         // dd($data['thumbnail_image']);  
 
         Product::create($data);
@@ -116,8 +118,10 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'subcategory_id' => 'nullable|exists:subcategories,id',
             'subsubcategory_id' => 'nullable|exists:subsubcategories,id',
-            'selling_price' => 'required|integer|min:1|digits_between:1,6',
-            'discount_price' => 'nullable|integer|min:1|lt:selling_price|digits_between:1,6',
+            // 'selling_price' => 'required|integer|min:1|digits_between:1,6',
+            'selling_price' => 'required|numeric|min:1|between:1,9999999.99',
+            // 'discount_price' => 'nullable|integer|min:1|lt:selling_price|digits_between:1,6',
+            'discount_price' => 'nullable|integer|min:1|lt:selling_price|between:1,9999999.99',
             'start_discount_date' => 'nullable|before:end_discount_date',
             'end_discount_date' => 'nullable|after:start_discount_date',
             'unit'  => 'required|string',
@@ -143,7 +147,7 @@ class ProductController extends Controller
         $data['slug'] = \Str::slug($request->name);
 
         if($request->hasFile('thumbnail_image')){
-            $data['thumbnail_image'] = $this->updateImage($request, $product->thumbnail_image, 'thumbnail_image', 'product_images-', 'product_images');
+            $data['thumbnail_image'] = $this->updateImage($request, $product->thumbnail_image, 'thumbnail_image', 'product/thumbnail_images-', 'product_images');
             // dd($data['thumbnail_image']);  
         }
         else{
