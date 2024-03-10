@@ -100,13 +100,24 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        $subcategory->delete();
-        $notifications = array(
-            'messege' => 'Sub-Category deleted successfully!!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notifications);
+        // dd($subcategory->subcategories->count() > 0);
+        if($subcategory->subsubcategories->count() < 1){
+            $subcategory->delete();
+            $notifications = array(
+                'messege' => 'Sub-Category deleted successfully!!',
+                'alert-type' => 'success',
+            );
+            return redirect()->back()->with($notifications);
+        }else{
+            $notifications = array(
+                'messege' => 'This subcateogory have subsubcategory. Delete subsubcategory first!!',
+                'alert-type' => 'success',
+            );
+            return redirect()->back()->with($notifications);
+        }
     }
+
+
 
     public function active(Subcategory $subcategory){
         $subcategory->update(['status' => 1]);

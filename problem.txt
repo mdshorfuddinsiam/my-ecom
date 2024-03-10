@@ -4,6 +4,5 @@
 $) (breadcumb) dynamic kora lagbe*
 5) (variant-item) er (stutus) button update hoitase nah
 
-# brand (is_featured, slug) field lagano lagbe
 # (category) delete korar condition lagate hobe
 
