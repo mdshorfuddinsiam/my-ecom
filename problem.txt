@@ -4,5 +4,4 @@
 $) (breadcumb) dynamic kora lagbe*
 5) (variant-item) er (stutus) button update hoitase nah
 
-# (category) delete korar condition lagate hobe
 

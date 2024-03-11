@@ -9,6 +9,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\GalleryimageController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SliderController;
@@ -83,6 +84,7 @@ Route::prefix('user')->name('user.')->group(function () {
 	Route::post('/password/update', [App\Http\Controllers\HomeController::class, 'userPasswordUpdate'])->name('password.update');
 });
 
+// Admin
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
 	// Admin Profile
 	Route::resource('profiles', AdminProfileController::class);
@@ -174,3 +176,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 		Route::post('slider/update/status',[SliderController::class,'updateStatus'])->name('slider.update-status');	
 
 });
+
+// Fontend Contact Form
+Route::get('contact', [PageController::class, 'contactview'])->name('contact.view');
+Route::post('contact/submit', [PageController::class, 'contactFormSubmit'])->name('contact.form.submit');
+	

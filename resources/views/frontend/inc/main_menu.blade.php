@@ -304,7 +304,7 @@
                         <li><a href="daily_deals.html">daily deals</a></li>
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="contact.html">contact</a></li>
+                        <li><a href="{{ route('contact.view') }}">contact</a></li>
                         <li><a href="dsahboard.html">my account</a></li>
                         @guest
                         <li><a href="{{ route('login') }}">login/register</a></li>
