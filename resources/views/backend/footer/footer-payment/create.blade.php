@@ -1,54 +1,40 @@
 @extends('backend.layouts.admin_master')
 @section('title')
-	Brand Edit
+	Footer Payment Create
+@endsection
+@section('admin_css')
+
 @endsection
 
 @section('content')
 	<div class="card shadow-sm">
 	    <div class="card-header">
-	        <h3 class="card-title">Brand Edit</h3>
+	        <h3 class="card-title">Footer Payment Create</h3>
 	        <div class="card-toolbar">
-	            <a href="{{ route('admin.brands.index') }}" class="btn btn-sm btn-light">
-	                <i class="fas fa-list"></i> Brand Lists
+	            <a href="{{ route('admin.footerpayments.index') }}" class="btn btn-sm btn-light">
+	                <i class="fas fa-list"></i> Footer Payment Lists
 	            </a>
 	        </div>
 	    </div>
 	    <div class="card-body">
 
-	    	{{-- @if ($errors->any())
-	    	    <div class="alert alert-danger">
-	    	        <ul>
-	    	            @foreach ($errors->all() as $error)
-	    	                <li>{{ $error }}</li>
-	    	            @endforeach
-	    	        </ul>
-	    	    </div>
-	    	@endif --}}
-
-	    	<form action="{{ route('admin.brands.update', $brand->id) }}" method="POST" enctype="multipart/form-data">
+	    	<form action="{{ route('admin.footerpayments.store') }}" method="POST" enctype="multipart/form-data">
 	    		@csrf
-	    		@method('PUT')
+
+	    		{{-- @if ($errors->any())
+	    		    <div class="alert alert-danger">
+	    		        <ul>
+	    		            @foreach ($errors->all() as $error)
+	    		                <li>{{ $error }}</li>
+	    		            @endforeach
+	    		        </ul>
+	    		    </div>
+	    		@endif --}}
 
 	    		<!--begin::Input group-->
 	    		<div class="fv-row mb-7">
 	    		  <!--begin::Label-->
-	    		  <label class="required fw-semibold fs-6 mb-2">Name</label>
-	    		  <!--end::Label-->
-	    		  <!--begin::Input-->
-	    		  <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0 @error('name') is-invalid @enderror" placeholder="Name" value="{{ old('name') ?? $brand->name }}" />
-	    		  <!--end::Input-->
-	    		  @error('name')
-	    		      <span class="invalid-feedback" role="alert">
-	    		          <strong>{{ $message }}</strong>
-	    		      </span>
-	    		  @enderror
-	    		</div>
-	    		<!--end::Input group-->
-
-	    		<!--begin::Input group-->
-	    		<div class="fv-row mb-7">
-	    		  <!--begin::Label-->
-	    		  <label class=" d-block fw-semibold fs-6 mb-5">Image</label>
+	    		  <label class="required d-block fw-semibold fs-6 mb-5">Image</label>
 	    		  <!--end::Label-->
 	    		  <!--begin::Image placeholder-->
 	    		  <style>
@@ -64,13 +50,13 @@
 	    		  <!--begin::Image input-->
 	    		  <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
 	    		    <!--begin::Preview existing avatar-->
-	    		    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ $brand->image ? asset($brand->image) : asset('/uploads/no_image.jpg') }});"></div>
+	    		    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('/uploads/no_image.jpg') }});"></div>
 	    		    <!--end::Preview existing avatar-->
 	    		    <!--begin::Label-->
 	    		    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow " data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
 	    		      <i class="bi bi-pencil-fill fs-7"></i>
 	    		      <!--begin::Inputs-->
-	    		      <input type="file" name="image" accept=".png, .jpg, .jpeg" value="{{ old('image') }}" />
+	    		      <input type="file" name="image" accept=".png, .jpg, .jpeg" value="{{-- {{ old('image') }} --}}" />
 	    		      {{-- <input type="hidden" name="avatar_remove" /> --}}
 	    		      <!--end::Inputs-->
 	    		    </label>
@@ -101,30 +87,12 @@
 	    		<!--begin::Input group-->
 	    		<div class="fv-row mb-7">
 	    		  <!--begin::Label-->
-	    		  <label class="fw-semibold fs-6 mb-2">Is Featured</label>
-	    		  <!--end::Label-->	
-	    		  <select name="is_featured" class="form-select form-select-solid @error('is_featured') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
-	    		      <option></option>
-	    		      <option {{ old('is_featured', $brand->is_featured) == "1" ? 'selected' : '' }} value="1">Yes</option>
-	    		      <option {{ old('is_featured', $brand->is_featured) == "0" ? 'selected' : '' }} value="0">No</option>
-	    		  </select>
-	    		  @error('is_featured')
-	    		      <span class="invalid-feedback" role="alert">
-	    		          <strong>{{ $message }}</strong>
-	    		      </span>
-	    		  @enderror
-	    		</div>
-	    		<!--end::Input group-->
-	    		
-	    		<!--begin::Input group-->
-	    		<div class="fv-row mb-7">
-	    		  <!--begin::Label-->
-	    		  <label class="fw-semibold fs-6 mb-2">Status</label>
+	    		  <label class="required fw-semibold fs-6 mb-2">Status</label>
 	    		  <!--end::Label-->	
 	    		  <select name="status" class="form-select form-select-solid @error('status') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
 	    		      <option></option>
-	    		      <option {{ old('status', $brand->status) == "1" ? 'selected' : '' }} value="1">Active</option>
-	    		      <option {{ old('status', $brand->status) == "0" ? 'selected' : '' }} value="0">Inactive</option>
+	    		      <option {{ old('status') == "1" ? 'selected' : '' }} value="1">Active</option>
+	    		      <option {{ old('status') == "0" ? 'selected' : '' }} value="0">Inactive</option>
 	    		  </select>
 	    		  @error('status')
 	    		      <span class="invalid-feedback" role="alert">
@@ -133,14 +101,17 @@
 	    		  @enderror
 	    		</div>
 	    		<!--end::Input group-->
+
 	    		<div class="fv-row mb-7">
-	    			<input type="submit" class="btn btn-light-primary mt-5" value="Update">
+	    			<input type="submit" class="btn btn-light-primary mt-5" value="Save">
 	    		</div>
 	    		
 	    	</form>
 	    </div>		
 	</div>
+
 @endsection
 
 @section('admin_js')
+
 @endsection

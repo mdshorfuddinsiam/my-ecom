@@ -8,6 +8,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\FooterGridThreeController;
+use App\Http\Controllers\FooterGridTitleController;
+use App\Http\Controllers\FooterGridTwoController;
+use App\Http\Controllers\FooterInfoController;
+use App\Http\Controllers\FooterSocialController;
+use App\Http\Controllers\FooterpaymentController;
 use App\Http\Controllers\GalleryimageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
@@ -175,9 +181,43 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 		// Status Update
 		Route::post('slider/update/status',[SliderController::class,'updateStatus'])->name('slider.update-status');	
 
+	// Admin Footer Info
+	Route::get('footerinfo/edit',[FooterInfoController::class,'edit'])->name('footerinfos.edit');
+	Route::put('footerinfo/update/{footerInfo}',[FooterInfoController::class,'update'])->name('footerinfos.update');
+
+	// Admin Footer Social
+	Route::resource('footersocials', FooterSocialController::class);
+	Route::get('footersocial/delete/{footersocial}',[FooterSocialController::class,'destroy'])->name('footersocial.delete');
+		// Status Update
+		Route::post('footersocial/update/status',[FooterSocialController::class,'updateStatus'])->name('footersocial.update-status');	
+
+	// Admin Footer Grid Two
+	Route::resource('footergridtwos', FooterGridTwoController::class);
+	Route::get('footergridtwo/delete/{footergridtwo}',[FooterGridTwoController::class,'destroy'])->name('footergridtwo.delete');
+		// Status Update
+		Route::post('footergridtwo/update/status',[FooterGridTwoController::class,'updateStatus'])->name('footergridtwo.update-status');	
+		
+	// Admin Footer Grid Three
+	Route::resource('footergridthrees', FooterGridThreeController::class);
+	Route::get('footergridthree/delete/{footergridthree}',[FooterGridThreeController::class,'destroy'])->name('footergridthree.delete');
+		// Status Update
+		Route::post('footergridthree/update/status',[FooterGridThreeController::class,'updateStatus'])->name('footergridthree.update-status');	
+		
+	// Admin Footer Info
+	Route::get('footergridtitle/edit',[FooterGridTitleController::class,'edit'])->name('footergridtitle.edit');
+	Route::put('footergridtitle/update/{footergridtitle}',[FooterGridTitleController::class,'update'])->name('footergridtitle.update');
+
+
+	// Admin Footer Payment
+	Route::resource('footerpayments', FooterpaymentController::class);
+	Route::get('footerpayment/delete/{footerpayment}',[FooterpaymentController::class,'destroy'])->name('footerpayment.delete');
+		// Status Update
+		Route::post('footerpayment/update/status',[FooterpaymentController::class,'updateStatus'])->name('footerpayment.update-status');	
+		
+		
 });
 
 // Fontend Contact Form
 Route::get('contact', [PageController::class, 'contactview'])->name('contact.view');
 Route::post('contact/submit', [PageController::class, 'contactFormSubmit'])->name('contact.form.submit');
-	
+
