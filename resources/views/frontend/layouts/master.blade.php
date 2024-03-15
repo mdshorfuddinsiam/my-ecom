@@ -24,6 +24,11 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/jquery.classycountdown.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/venobox.min.css">
 
+    {{-- toaster css --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/> --}}
+    {{-- sweetalert2 css --}}
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css">
     <!-- <link rel="stylesheet" href="{{ asset('frontend') }}/css/rtl.css"> -->
@@ -137,6 +142,11 @@
     <!--classycountdown js-->
     <script src="{{ asset('frontend') }}/js/jquery.classycountdown.js"></script>
 
+    {{-- toaster js --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script> --}}
+    {{-- sweetalert2 css --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+
     <!--main/custom js-->
     <script src="{{ asset('frontend') }}/js/main.js"></script>
 
@@ -149,6 +159,55 @@
     </script>
 
     @yield('front_js')
+
+    <script>
+      @if(session()->has('messege'))
+        var type = "{{ session()->get('alert-type') }}";
+        // alert('siam');
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+          showCloseButton: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        
+        switch(type) {
+          case 'success':
+            Toast.fire({
+              icon: "success",
+              title: "{{ session()->get('messege') }}"
+            });
+            break;
+          case 'error':
+            Toast.fire({
+              icon: "error",
+              title: "{{ session()->get('messege') }}"
+            });
+            break;
+          case 'info':
+            Toast.fire({
+              icon: "info",
+              title: "{{ session()->get('messege') }}"
+            });
+            break;
+          case 'warning':
+            Toast.fire({
+              icon: "warning",
+              title: "{{ session()->get('messege') }}"
+            });
+            break;
+          default:
+            // code block
+        }
+      @endif
+    </script>
 
 </body>
 

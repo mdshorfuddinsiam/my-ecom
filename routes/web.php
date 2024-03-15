@@ -5,9 +5,12 @@ use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BlogcategoryController;
+use App\Http\Controllers\BlogpostController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FooterGridThreeController;
 use App\Http\Controllers\FooterGridTitleController;
 use App\Http\Controllers\FooterGridTwoController;
@@ -17,12 +20,14 @@ use App\Http\Controllers\FooterpaymentController;
 use App\Http\Controllers\GalleryimageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SubsubcategoryController;
 use App\Http\Controllers\VariantController;
 use App\Http\Controllers\VariantitemController;
+use App\Models\Blogpost;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +42,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.index');
+	$blogposts = Blogpost::whereStatus(1)->latest()->get();
+    return view('frontend.index', compact('blogposts'));
     // return view('frontend.layouts.master');
     // return view('welcome');
 });
@@ -207,17 +213,41 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 	Route::get('footergridtitle/edit',[FooterGridTitleController::class,'edit'])->name('footergridtitle.edit');
 	Route::put('footergridtitle/update/{footergridtitle}',[FooterGridTitleController::class,'update'])->name('footergridtitle.update');
 
-
 	// Admin Footer Payment
 	Route::resource('footerpayments', FooterpaymentController::class);
 	Route::get('footerpayment/delete/{footerpayment}',[FooterpaymentController::class,'destroy'])->name('footerpayment.delete');
 		// Status Update
 		Route::post('footerpayment/update/status',[FooterpaymentController::class,'updateStatus'])->name('footerpayment.update-status');	
+	
+	// Admin Blog Category
+	Route::resource('blogcategories', BlogcategoryController::class);
+	Route::get('blogcategory/delete/{blogcategory}',[BlogcategoryController::class,'destroy'])->name('blogcategory.delete');
+		// Status Update
+		Route::post('blogcategory/update/status',[BlogcategoryController::class,'updateStatus'])->name('blogcategory.update-status');	
 		
+	// Admin Blog Post
+	Route::resource('blogposts', BlogpostController::class);
+	Route::get('blogpost/delete/{blogpost}',[BlogpostController::class,'destroy'])->name('blogpost.delete');
+		// Status Update
+		Route::post('blogpost/update/status',[BlogpostController::class,'updateStatus'])->name('blogpost.update-status');
+
+	// // Admin Setting
+	// Route::get('setting/edit/{setting}',[SettingController::class,'edit'])->name('setting.edit');
+	// Route::put('setting/update/{setting}',[SettingController::class,'update'])->name('setting.update');
+	// Route::get('setting/delete/{setting}',[SettingController::class,'destroy'])->name('setting.delete');
+	// 	// Status Update
+	// 	Route::post('setting/update/status',[SettingController::class,'updateStatus'])->name('setting.update-status');	
 		
 });
 
 // Fontend Contact Form
 Route::get('contact', [PageController::class, 'contactview'])->name('contact.view');
 Route::post('contact/submit', [PageController::class, 'contactFormSubmit'])->name('contact.form.submit');
+
+// Frontend Blog Details
+Route::get('blog/details/{blogpost}', [PageController::class, 'blogDetailsView'])->name('blog.details');
+	// Blog Comment Submit
+	Route::post('blog/comment/{blogpost}', [CommentController::class, 'blogCommentStore'])->name('blogpost.comment.store');
+	// Blog Reply Submit
+	Route::post('blog/reply-comment/{blogpost}/{comment}', [CommentController::class, 'blogReplyStore'])->name('blogpost.reply-comment.store');
 

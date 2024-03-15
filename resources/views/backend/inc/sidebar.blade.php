@@ -315,6 +315,60 @@
         <!--end:Menu item-->
         {{-- END SLIDER --}}
 
+        {{-- START BLOG CATEGORY --}}
+        <!--begin:Menu item-->
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Request::routeIs('admin.blogcategories.*') || Request::routeIs('admin.blogposts.*') ? 'hover show' : '' }}">
+          <!--begin:Menu link-->
+          <span class="menu-link {{ Request::routeIs('admin.blogcategories.*') || Request::routeIs('admin.blogposts.*') ? 'active' : '' }}">
+            <span class="menu-icon">
+              <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+              <span class="svg-icon svg-icon-2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor" />
+                  <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor" />
+                </svg>
+              </span>
+              <!--end::Svg Icon-->
+            </span>
+            <span class="menu-title">Blog</span>
+            <span class="menu-arrow"></span>
+          </span>
+          <!--end:Menu link-->
+          <!--begin:Menu sub-->
+          <div class="menu-sub menu-sub-accordion">
+
+            <!--begin:Menu item-->
+            <div class="menu-item">
+              <!--begin:Menu link-->
+              <a class="menu-link {{ Request::routeIs('admin.blogcategories.*') ? 'active' : '' }}" href="{{ route('admin.blogcategories.index') }}">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">blog categories</span>
+              </a>
+              <!--end:Menu link-->
+            </div>
+            <!--end:Menu item-->
+            
+            <!--begin:Menu item-->
+            <div class="menu-item">
+              <!--begin:Menu link-->
+              <a class="menu-link {{ Request::routeIs('admin.blogposts.*') ? 'active' : '' }}" href="{{ route('admin.blogposts.index') }}">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">blog posts</span>
+              </a>
+              <!--end:Menu link-->
+            </div>
+            <!--end:Menu item-->
+            
+          </div>
+          <!--end:Menu sub-->
+        </div>
+        <!--end:Menu item-->
+        {{-- END BLOG CATEGORY --}}
+
         <!--begin:Menu item-->
         <div class="menu-item pt-5">
           <!--begin:Menu content-->
@@ -430,6 +484,87 @@
         </div>
         <!--end:Menu item-->
         {{-- END FOOTER --}}
+
+
+        <!--begin:Menu item-->
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+          <!--begin:Menu link-->
+          <span class="menu-link">
+            <span class="menu-icon">
+              <!--begin::Svg Icon | path: icons/duotune/graphs/gra006.svg-->
+              <span class="svg-icon svg-icon-2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 5.91517C15.8 6.41517 18 8.81519 18 11.8152C18 12.5152 17.9 13.2152 17.6 13.9152L20.1 15.3152C20.6 15.6152 21.4 15.4152 21.6 14.8152C21.9 13.9152 22.1 12.9152 22.1 11.8152C22.1 7.01519 18.8 3.11521 14.3 2.01521C13.7 1.91521 13.1 2.31521 13.1 3.01521V5.91517H13Z" fill="currentColor" />
+                  <path opacity="0.3" d="M19.1 17.0152C19.7 17.3152 19.8 18.1152 19.3 18.5152C17.5 20.5152 14.9 21.7152 12 21.7152C9.1 21.7152 6.50001 20.5152 4.70001 18.5152C4.30001 18.0152 4.39999 17.3152 4.89999 17.0152L7.39999 15.6152C8.49999 16.9152 10.2 17.8152 12 17.8152C13.8 17.8152 15.5 17.0152 16.6 15.6152L19.1 17.0152ZM6.39999 13.9151C6.19999 13.2151 6 12.5152 6 11.8152C6 8.81517 8.2 6.41515 11 5.91515V3.01519C11 2.41519 10.4 1.91519 9.79999 2.01519C5.29999 3.01519 2 7.01517 2 11.8152C2 12.8152 2.2 13.8152 2.5 14.8152C2.7 15.4152 3.4 15.7152 4 15.3152L6.39999 13.9151Z" fill="currentColor" />
+                </svg>
+              </span>
+              <!--end::Svg Icon-->
+            </span>
+            <span class="menu-title">Support Center</span>
+            <span class="menu-arrow"></span>
+          </span>
+          <!--end:Menu link-->
+          <!--begin:Menu sub-->
+          <div class="menu-sub menu-sub-accordion">
+            <!--begin:Menu item-->
+            <div class="menu-item">
+              <!--begin:Menu link-->
+              <a class="menu-link" href="../../demo1/dist/apps/support-center/overview.html">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Overview</span>
+              </a>
+              <!--end:Menu link-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
+              <!--begin:Menu link-->
+              <span class="menu-link">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Tickets</span>
+                <span class="menu-arrow"></span>
+              </span>
+              <!--end:Menu link-->
+              <!--begin:Menu sub-->
+              <div class="menu-sub menu-sub-accordion">
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="../../demo1/dist/apps/support-center/tickets/list.html">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Tickets List</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="../../demo1/dist/apps/support-center/tickets/view.html">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">View Ticket</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+              </div>
+              <!--end:Menu sub-->
+            </div>
+            <!--end:Menu item-->
+          </div>
+          <!--end:Menu sub-->
+        </div>
+        <!--end:Menu item-->
+
+        
 
       </div>
       <!--end::Menu-->
